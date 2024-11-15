@@ -1,0 +1,134 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+/* Coder picture code for phone */
+@media screen and (max-width: 1280px) {
+  .coder-section {
+    &__img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    &__pc-img {
+      display: none;
+    }
+  }
+}
+/* Coder picture for PC */
+@media screen and (min-width: 1280px) {
+  .coder-section {
+    &__img {
+      display: none;
+    }
+    &__pc-img {
+      max-width: 1280px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Story container phone */
+.story-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $darkBlue;
+  font-size: 22px;
+  height: 30rem;
+
+  &__button {
+    @include button-size;
+    font-size: 18px;
+    margin-top: 2rem;
+    background-color: $darkBlue;
+    border: solid 1px $lightBlue;
+    color: $lightBlue;
+  }
+
+  &__text {
+    color: white;
+    text-align: center;
+    width: 90%;
+  }
+}
+/* Story container pc  */
+@media screen and (min-width: 1280px) {
+  .story-container {
+    &__text {
+      width: 40%;
+    }
+    &__button {
+      @include button-size;
+    }
+  }
+}
+
+/* Play info container phone */
+@media screen and (max-width: 1280px) {
+  .play-info-container {
+    &__button {
+      border: none;
+      background-color: $red;
+      color: white;
+      width: 65%;
+      height: 3rem;
+      margin-right: 25%;
+    }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 300px;
+
+      &-title {
+        width: 90%;
+      }
+      p {
+        width: 90%;
+      }
+    }
+    &__img {
+      width: 100%;
+    }
+  }
+}
+
+/* Play info container PC */
+@media screen and (min-width: 1280px) {
+  .play-info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-bottom: 8rem;
+    &__img-wrapper2 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    img {
+      width: 100%;
+    }
+    &__content-title {
+      width: 70%;
+      margin-top: 4rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    p {
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &__button {
+      margin-left: 15%;
+      @include button-size;
+      background-color: $red;
+      border: none;
+      color: white;
+      font-size: 20px;
+    }
+  }
+}
