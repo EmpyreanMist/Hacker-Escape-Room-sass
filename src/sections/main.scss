@@ -7,7 +7,7 @@
 @use "filterChallenges.scss" as *;
 @use "sectionsChallenges.scss" as *;
 @use "book.scss" as *;
-@use "contactPage" as *;
+@use "contactPage.scss" as *;
 
 /* Phone and PC */
 html {
@@ -283,5 +283,24 @@ button:hover {
     p {
       margin: 5%;
     }
+  }
+}
+
+
+.api-card-container__card{
+  animation: fadeInCards 0.3s ease-in;
+}
+
+@keyframes fadeInCards{
+  0%{
+    opacity: 0;
+    scale: 0.7;
+  }
+  60%{
+    scale: 1.01;
+  }
+  100%{
+    opacity: 1;
+    scale: 1;
   }
 }
