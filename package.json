@@ -6,7 +6,7 @@
   "scripts": {
     "sass:compile": "sass src/sections/main.scss main.css",
     "sass:watch": "sass --watch src/sections/main.scss main.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress open"
   },
   "author": "Christian",
   "license": "ISC",
@@ -14,6 +14,6 @@
     "sass": "^1.81.0"
   },
   "devDependencies": {
-    "cypress": "^13.16.0"
+    "cypress": "^13.17.0"
   }
 }
