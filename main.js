@@ -1,53 +1,53 @@
-const cardOneTitle = document.querySelector(".card-container__card-one");
-const cardTwoTitle = document.querySelector(".card-container__card-two");
-const cardThreeTitle = document.querySelector(".card-container__card-three");
+const cardOneTitle = document.querySelector('.card-container__card-one');
+const cardTwoTitle = document.querySelector('.card-container__card-two');
+const cardThreeTitle = document.querySelector('.card-container__card-three');
 
-const cardOneText = document.querySelector(".card-container__card-text-one");
-const cardTwoText = document.querySelector(".card-container__card-text-two");
+const cardOneText = document.querySelector('.card-container__card-text-one');
+const cardTwoText = document.querySelector('.card-container__card-text-two');
 const cardThreeText = document.querySelector(
-  ".card-container__card-text-three"
+  '.card-container__card-text-three'
 );
 
 const cardParticipantsOne = document.querySelector(
-  ".card-container__participants-one"
+  '.card-container__participants-one'
 );
 const cardParticipantsTwo = document.querySelector(
-  ".card-container__participants-two"
+  '.card-container__participants-two'
 );
 const cardParticipantsThree = document.querySelector(
-  ".card-container__participants-three"
+  '.card-container__participants-three'
 );
 
-const cardButtonOne = document.querySelector(".card-container__button-one");
-const cardButtonTwo = document.querySelector(".card-container__button-two");
-const cardButtonThree = document.querySelector(".card-container__button-three");
+const cardButtonOne = document.querySelector('.card-container__button-one');
+const cardButtonTwo = document.querySelector('.card-container__button-two');
+const cardButtonThree = document.querySelector('.card-container__button-three');
 
-const cardButtonsNode = document.querySelectorAll(".card-container__button");
+const cardButtonsNode = document.querySelectorAll('.card-container__button');
 const cardButtons = Array.from(cardButtonsNode);
 
-const cardImageOne = document.querySelector(".card-container__img-one");
-const cardImageTwo = document.querySelector(".card-container__img-two");
-const cardImageThree = document.querySelector(".card-container__img-three");
+const cardImageOne = document.querySelector('.card-container__img-one');
+const cardImageTwo = document.querySelector('.card-container__img-two');
+const cardImageThree = document.querySelector('.card-container__img-three');
 
 let challengesSorted = [];
 
 /* Functions for buttons */
 
-const onsiteButtons = document.querySelectorAll(".button-wrapper__onsite");
-const onlineButtons = document.querySelectorAll(".button-wrapper__online");
+const onsiteButtons = document.querySelectorAll('.button-wrapper__onsite');
+const onlineButtons = document.querySelectorAll('.button-wrapper__online');
 const onsiteButtonsArray = Array.from(onsiteButtons);
 const onlineButtonsArray = Array.from(onlineButtons);
 
 /* Eventlisteners for singe buttons */
 
 function seeAllChallenges() {
-  window.location.href = "./challenges.html";
+  window.location.href = './challenges.html';
 }
 
 /* Loop evenlisteners for booking buttons */
 
 for (let i = 0; i < cardButtons.length; i++) {
-  cardButtons[i].addEventListener("click", () => {
+  cardButtons[i].addEventListener('click', () => {
     const challenge = challengesSorted[i];
 
     openBookingPageOne(
@@ -61,16 +61,16 @@ for (let i = 0; i < cardButtons.length; i++) {
 /* Loop eventlisteners for onsite and online buttons */
 
 for (let i = 0; i < onsiteButtonsArray.length; i++) {
-  onsiteButtonsArray[i].addEventListener("click", () => {
-    window.location.href = "./challenges.html";
-    console.log("Onsite pressed");
+  onsiteButtonsArray[i].addEventListener('click', () => {
+    window.location.href = './challenges.html';
+    console.log('Onsite pressed');
   });
 }
 
 for (let i = 0; i < onlineButtonsArray.length; i++) {
-  onlineButtonsArray[i].addEventListener("click", () => {
-    window.location.href = "./challenges.html";
-    console.log("Online pressed");
+  onlineButtonsArray[i].addEventListener('click', () => {
+    window.location.href = './challenges.html';
+    console.log('Online pressed');
   });
 }
 
@@ -83,7 +83,7 @@ async function fetchAPI() {
   try {
     // Fetch data from the API
     const response = await fetch(
-      "https://lernia-sjj-assignments.vercel.app/api/challenges"
+      'https://lernia-sjj-assignments.vercel.app/api/challenges'
     );
 
     // Check if the response is successful
@@ -92,10 +92,10 @@ async function fetchAPI() {
     }
 
     const data = await response.json();
-    document.querySelector(".loader").remove();
+    document.querySelector('.loader').remove();
     challengesSorted = data.challenges.sort((a, b) => b.rating - a.rating);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error fetching data:', error);
   }
 }
 
@@ -129,39 +129,39 @@ function updateCardsParticipants() {
 }
 
 function updateOnsiteOnlineText() {
-  if (challengesSorted[0].type === "online") {
-    cardParticipantsOne.innerText += " (networked)";
+  if (challengesSorted[0].type === 'online') {
+    cardParticipantsOne.innerText += ' (networked)';
   }
-  if (challengesSorted[0].type === "onsite") {
-    cardOneTitle.innerText += " (on-site)";
+  if (challengesSorted[0].type === 'onsite') {
+    cardOneTitle.innerText += ' (on-site)';
   }
-  if (challengesSorted[1].type === "online") {
-    cardParticipantsTwo.innerText += " (networked)";
+  if (challengesSorted[1].type === 'online') {
+    cardParticipantsTwo.innerText += ' (networked)';
   }
-  if (challengesSorted[1].type === "onsite") {
-    cardTwoTitle.innerText += " (on-site)";
+  if (challengesSorted[1].type === 'onsite') {
+    cardTwoTitle.innerText += ' (on-site)';
   }
-  if (challengesSorted[2].type === "online") {
-    cardParticipantsThree.innerText += " (networked)";
+  if (challengesSorted[2].type === 'online') {
+    cardParticipantsThree.innerText += ' (networked)';
   }
-  if (challengesSorted[2].type === "onsite") {
-    cardThreeTitle.innerText += " (on-site)";
+  if (challengesSorted[2].type === 'onsite') {
+    cardThreeTitle.innerText += ' (on-site)';
   }
 }
 
 function updateCardsButtonText() {
   cardButtonOne.innerText =
-    challengesSorted[0].type === "online"
-      ? "Take challenge online"
-      : "Book this room";
+    challengesSorted[0].type === 'online'
+      ? 'Take challenge online'
+      : 'Book this room';
   cardButtonTwo.innerText =
-    challengesSorted[1].type === "online"
-      ? "Take challenge online"
-      : "Book this room";
+    challengesSorted[1].type === 'online'
+      ? 'Take challenge online'
+      : 'Book this room';
   cardButtonThree.innerText =
-    challengesSorted[2].type === "online"
-      ? "Take challenge online"
-      : "Book this room";
+    challengesSorted[2].type === 'online'
+      ? 'Take challenge online'
+      : 'Book this room';
 }
 
 function updateCardsImage() {
@@ -172,21 +172,21 @@ function updateCardsImage() {
 
 function updateCardsRating() {
   const starContainers = Array.from(
-    document.querySelectorAll(".card-container__star-container")
+    document.querySelectorAll('.card-container__star-container')
   );
 
   // Helper function to create and append stars
   function createStars(rating) {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      const star = document.createElement("i");
+      const star = document.createElement('i');
 
       if (rating >= i + 1) {
-        star.classList.add("fa-solid", "fa-star", "red");
+        star.classList.add('fa-solid', 'fa-star', 'red');
       } else if (rating > i && rating < i + 1) {
-        star.classList.add("fa-regular", "fa-star-half-stroke", "red");
+        star.classList.add('fa-regular', 'fa-star-half-stroke', 'red');
       } else {
-        star.classList.add("fa-regular", "fa-star", "red");
+        star.classList.add('fa-regular', 'fa-star', 'red');
       }
 
       stars.push(star);

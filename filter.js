@@ -1,15 +1,15 @@
-const includeOnline = document.querySelector("#includeOnline");
-const includeOnsite = document.querySelector("#includeOnsite");
-const filterInput = document.querySelector(".filterInput");
-const btnCloseFilterMenu = document.querySelector("#btnCloseFilter");
-const filterSection = document.querySelector(".filterSection");
-const filterBtn = document.querySelector("#filter-btn");
+const includeOnline = document.querySelector('#includeOnline');
+const includeOnsite = document.querySelector('#includeOnsite');
+const filterInput = document.querySelector('.filterInput');
+const btnCloseFilterMenu = document.querySelector('#btnCloseFilter');
+const filterSection = document.querySelector('.filterSection');
+const filterBtn = document.querySelector('#filter-btn');
 //--root--
 switchFilterMenu();
 
 const filterState = {
   types: [],
-  text: "",
+  text: '',
   ratings: {
     from: 0,
     to: 5,
@@ -20,7 +20,7 @@ const filterState = {
 async function fetchData() {
   try {
     const response = await fetch(
-      "https://lernia-sjj-assignments.vercel.app/api/challenges"
+      'https://lernia-sjj-assignments.vercel.app/api/challenges'
     );
 
     if (!response.ok) {
@@ -68,6 +68,11 @@ async function applyFilters() {
 
   createCardsFromAPI(filteredChallenges);
   console.log(filteredChallenges);
+
+  if (document.querySelector('.api-card-container').children.length === 0) {
+    document.querySelector('.api-card-container').innerHTML =
+      '<h3 class="noChallengesFound">No challenges found</h3>';
+  }
 }
 
 function handleStarClick(stars, filterKey) {
@@ -75,7 +80,7 @@ function handleStarClick(stars, filterKey) {
   let clickCount = 0;
 
   stars.forEach((star, index) => {
-    star.addEventListener("click", function () {
+    star.addEventListener('click', function () {
       if (lastClickedIndex === index) {
         clickCount++;
 
@@ -96,18 +101,18 @@ function handleStarClick(stars, filterKey) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const starsLeft = document.querySelectorAll(".stars-container-left i");
-  const starsRight = document.querySelectorAll(".stars-container-right i");
+document.addEventListener('DOMContentLoaded', function () {
+  const starsLeft = document.querySelectorAll('.stars-container-left i');
+  const starsRight = document.querySelectorAll('.stars-container-right i');
 
-  handleStarClick(starsLeft, "from");
-  handleStarClick(starsRight, "to");
+  handleStarClick(starsLeft, 'from');
+  handleStarClick(starsRight, 'to');
 });
 
 function sortByType() {
   const types = [];
-  if (includeOnline.checked) types.push("online");
-  if (includeOnsite.checked) types.push("onsite");
+  if (includeOnline.checked) types.push('online');
+  if (includeOnsite.checked) types.push('onsite');
 
   filterState.types = types;
   applyFilters();
@@ -124,42 +129,42 @@ async function sortByText() {
   }
 }
 
-includeOnline.addEventListener("change", sortByType);
-includeOnsite.addEventListener("change", sortByType);
-filterInput.addEventListener("input", sortByText);
+includeOnline.addEventListener('change', sortByType);
+includeOnsite.addEventListener('change', sortByType);
+filterInput.addEventListener('input', sortByText);
 
 //----funtion to switch the filter menu on and off--
 function switchFilterMenu() {
-  btnCloseFilterMenu.addEventListener("click", () => {
-    filterSection.classList.toggle("active");
-    filterBtn.classList.toggle("active");
+  btnCloseFilterMenu.addEventListener('click', () => {
+    filterSection.classList.toggle('active');
+    filterBtn.classList.toggle('active');
   });
-  filterBtn.addEventListener("click", () => {
-    console.log("filterBtn clicked!!");
-    filterSection.classList.toggle("active");
-    filterBtn.classList.toggle("active");
+  filterBtn.addEventListener('click', () => {
+    console.log('filterBtn clicked!!');
+    filterSection.classList.toggle('active');
+    filterBtn.classList.toggle('active');
   });
 }
 //------
 
 //---------------event listener for the stars----------
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   //for the stars container in left side.
-  const stars = document.querySelectorAll(".stars-container-left i");
+  const stars = document.querySelectorAll('.stars-container-left i');
   let lastClickedIndex = -1;
   let clickCount = 0;
   stars.forEach((star, index) => {
-    star.addEventListener("click", function () {
+    star.addEventListener('click', function () {
       if (lastClickedIndex === index) {
         //count the repeted click on one index.
         clickCount++;
         if (clickCount === 2) {
           //If the same star is clicked twice, switch the class of the stars to half fill.
-          star.classList.toggle("fa-star-half-stroke");
+          star.classList.toggle('fa-star-half-stroke');
         } else if (clickCount === 3) {
           //same stars clicked for 3 times, remove hafl and solid, putt regular stars.
-          star.classList.remove("fa-solid", "fa-star-half-stroke");
-          star.classList.add("fa-regular");
+          star.classList.remove('fa-solid', 'fa-star-half-stroke');
+          star.classList.add('fa-regular');
           clickCount = 0; //Reset the click count
           lastClickedIndex = -1; //Reset the last clicked index
         }
@@ -167,10 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
         //Fill all stars up to and including the clicked star
         stars.forEach((s, i) => {
           if (i <= index) {
-            s.classList.add("fa-solid");
-            s.classList.remove("fa-star-half-stroke");
+            s.classList.add('fa-solid');
+            s.classList.remove('fa-star-half-stroke');
           } else {
-            s.classList.remove("fa-solid", "fa-star-half-stroke");
+            s.classList.remove('fa-solid', 'fa-star-half-stroke');
           }
         });
         lastClickedIndex = index; //Update the last clicked index so we know
@@ -179,28 +184,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   // same procces but for the stars container in right side.
-  const starsx = document.querySelectorAll(".stars-container-right i");
+  const starsx = document.querySelectorAll('.stars-container-right i');
   let lastClickedIndexx = -1;
   let clickCountx = 0;
   starsx.forEach((starx, index) => {
-    starx.addEventListener("click", function () {
+    starx.addEventListener('click', function () {
       if (lastClickedIndexx === index) {
         clickCountx++;
         if (clickCountx === 2) {
-          starx.classList.toggle("fa-star-half-stroke");
+          starx.classList.toggle('fa-star-half-stroke');
         } else if (clickCountx === 3) {
-          starx.classList.remove("fa-solid", "fa-star-half-stroke");
-          starx.classList.add("fa-regular");
+          starx.classList.remove('fa-solid', 'fa-star-half-stroke');
+          starx.classList.add('fa-regular');
           clickCountx = 0; //Reset the click count
           lastClickedIndexx = -1; //Reset the last clicked index
         }
       } else {
         starsx.forEach((s, i) => {
           if (i <= index) {
-            s.classList.add("fa-solid");
-            s.classList.remove("fa-star-half-stroke");
+            s.classList.add('fa-solid');
+            s.classList.remove('fa-star-half-stroke');
           } else {
-            s.classList.remove("fa-solid", "fa-star-half-stroke");
+            s.classList.remove('fa-solid', 'fa-star-half-stroke');
           }
         });
         lastClickedIndexx = index; //Update the last clicked index so we know
